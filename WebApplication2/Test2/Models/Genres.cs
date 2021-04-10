@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace Test2.Models
 {
-    public class Book
+    public class Genres
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public string AuthorBook { get; set; }
 
-        public int JanrId { get; set; }
-        public Janr Janr { get; set; }
+        public List<Genres> Janrs { get; set; }
+
     }
 }

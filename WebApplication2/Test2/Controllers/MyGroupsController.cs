@@ -54,7 +54,7 @@ namespace Test2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,GroupName")] MyGroup myGroup)
+        public async Task<IActionResult> Create([Bind("Id,GroupName")] Groups myGroup)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Test2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,GroupName")] MyGroup myGroup)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,GroupName")] Groups myGroup)
         {
             if (id != myGroup.Id)
             {

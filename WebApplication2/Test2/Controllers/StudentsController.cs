@@ -30,7 +30,7 @@ namespace Test2.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string searchText)
         {
-            var result = new List<Student>();
+            var result = new List<Students>();
             if (!string.IsNullOrEmpty(searchText))
             {
                 result = await _context.Students
@@ -78,7 +78,7 @@ namespace Test2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Fio,BirthDay,MyGroupId")] Student student)
+        public async Task<IActionResult> Create([Bind("Id,Fio,BirthDay,MyGroupId")] Students student)
         {
             if (ModelState.IsValid)
             {
@@ -112,7 +112,7 @@ namespace Test2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Fio,BirthDay,MyGroupId")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Fio,BirthDay,MyGroupId")] Students student)
         {
             if (id != student.Id)
             {

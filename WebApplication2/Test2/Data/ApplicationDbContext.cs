@@ -15,10 +15,10 @@ namespace Test2.Data
             Database.EnsureCreated();
         }
 
-        public DbSet<MyGroup> MyGroups { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Book> Books { get; set; }
-        public DbSet<Janr> Janrs { get; set; }
+        public DbSet<Groups> MyGroups { get; set; }
+        public DbSet<Students> Students { get; set; }
+        public DbSet<Books> Books { get; set; }
+        public DbSet<Genres> Janrs { get; set; }
 
 
     }
