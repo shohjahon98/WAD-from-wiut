@@ -10,11 +10,11 @@ using Test2.Models;
 
 namespace Test2.Controllers
 {
-    public class MyGroupsController : Controller
+    public class GroupsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public MyGroupsController(ApplicationDbContext context)
+        public GroupsController(ApplicationDbContext context)
         {
             _context = context;
         }

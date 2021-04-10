@@ -10,11 +10,11 @@ using Test2.Models;
 
 namespace Test2.Controllers
 {
-    public class JanrsController : Controller
+    public class GenresController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public JanrsController(ApplicationDbContext context)
+        public GenresController(ApplicationDbContext context)
         {
             _context = context;
         }
