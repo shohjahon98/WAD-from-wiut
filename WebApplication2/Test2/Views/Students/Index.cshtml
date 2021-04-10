@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Test2.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+<form action="/Students/Index" method="post">
+    <ul class="list-group list-group-horizontal list-unstyled">
+        <li class="list-group-item">
+            <input type="text" name="searchText" placeholder="Search..." />
+        </li>
+        <li>
+
+            <input class="btn btn-primary mt-2 ml-2" type="submit" name="Search" value="Search" />
+        </li>
+        <li>
+            <a class="btn btn-success mt-2 ml-2" asp-action="Index">Refresh</a>
+        </li>
+    </ul>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MyGroup)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MyGroup.GroupName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

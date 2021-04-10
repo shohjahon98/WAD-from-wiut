@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs
+/WebApplication2/.vs/Test2
+/WebApplication2/Test2/bin/Debug/net5.0
+/WebApplication2/Test2/obj
