@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace Test2.Models
 {
-    public class Groups
+    public class Janr
     {
         [Key]
         public int Id { get; set; }
-        public string GroupName { get; set; }
+        public string Name { get; set; }
 
-        public List<Students> Students { get; set; }
+        public List<Janr> Janrs { get; set; }
+
     }
 }

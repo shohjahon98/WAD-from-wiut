@@ -1,4 +1,4 @@
-﻿@model Test2.Models.Book
+﻿@model Test2.Models.Janr
 
 @{
     ViewData["Title"] = "Create";
@@ -6,7 +6,7 @@
 
 <h1>Create</h1>
 
-<h4>Book</h4>
+<h4>Janr</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -18,16 +18,7 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AuthorBook" class="control-label"></label>
-                <input asp-for="AuthorBook" class="form-control" />
-                <span asp-validation-for="AuthorBook" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="JanrId" class="control-label"></label>
-                <select asp-for="JanrId" class ="form-control" asp-items="ViewBag.JanrId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-success" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>

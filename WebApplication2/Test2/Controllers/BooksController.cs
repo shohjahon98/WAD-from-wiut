@@ -30,7 +30,7 @@ namespace Test2.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string searchText)
         {
-            var result = new List<Books>();
+            var result = new List<Book>();
             if (!string.IsNullOrEmpty(searchText))
             {
                 result = await _context.Books
@@ -79,7 +79,7 @@ namespace Test2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,AuthorBook,JanrId")] Books book)
+        public async Task<IActionResult> Create([Bind("Id,Name,AuthorBook,JanrId")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -113,7 +113,7 @@ namespace Test2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,AuthorBook,JanrId")] Books book)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,AuthorBook,JanrId")] Book book)
         {
             if (id != book.Id)
             {

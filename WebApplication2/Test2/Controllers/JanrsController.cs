@@ -10,11 +10,11 @@ using Test2.Models;
 
 namespace Test2.Controllers
 {
-    public class GenresController : Controller
+    public class JanrsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public GenresController(ApplicationDbContext context)
+        public JanrsController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -54,7 +54,7 @@ namespace Test2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Genres janr)
+        public async Task<IActionResult> Create([Bind("Id,Name")] Janr janr)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Test2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Genres janr)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Janr janr)
         {
             if (id != janr.Id)
             {

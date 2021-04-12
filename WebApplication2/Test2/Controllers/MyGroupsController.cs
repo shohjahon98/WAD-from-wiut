@@ -10,11 +10,11 @@ using Test2.Models;
 
 namespace Test2.Controllers
 {
-    public class GroupsController : Controller
+    public class MyGroupsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public GroupsController(ApplicationDbContext context)
+        public MyGroupsController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -54,7 +54,7 @@ namespace Test2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,GroupName")] Groups myGroup)
+        public async Task<IActionResult> Create([Bind("Id,GroupName")] MyGroup myGroup)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Test2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,GroupName")] Groups myGroup)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,GroupName")] MyGroup myGroup)
         {
             if (id != myGroup.Id)
             {
