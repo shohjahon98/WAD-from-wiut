@@ -12,13 +12,13 @@ namespace Test2.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
+           // Database.EnsureCreated();
         }
 
         public DbSet<MyGroup> MyGroups { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Book> Books { get; set; }
-        public DbSet<Janr> Janrs { get; set; }
+        public DbSet<Genre> Genres { get; set; }
 
 
     }

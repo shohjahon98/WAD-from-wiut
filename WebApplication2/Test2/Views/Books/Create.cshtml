@@ -23,8 +23,8 @@
                 <span asp-validation-for="AuthorBook" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="JanrId" class="control-label"></label>
-                <select asp-for="JanrId" class ="form-control" asp-items="ViewBag.JanrId"></select>
+                <label class="control-label">Genre</label>
+                <select asp-for="GenreId" class ="form-control" asp-items="ViewBag.GenreId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-success" />

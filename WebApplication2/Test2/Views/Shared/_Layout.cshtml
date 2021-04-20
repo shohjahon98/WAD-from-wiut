@@ -1,46 +1,58 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE  html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Test2</title>
+    <title>@ViewData["Title"] - Library Mangmanet System</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   <link href="~/css/templatemo_style.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" type="text/javascript">
+        function clearText(field) {
+            if (field.defaultValue == field.value) field.value = '';
+            else if (field.value == '') field.value = field.defaultValue;
+
+        }
+    </script>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Test2</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+        <div class="panel panel-default bg-body">
+            <div class="panel-body ">
+                <nav class="navbar navbar-expand">
+                    <ul class="nav nav-tabs-bordered">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                         
+                            <img width="40" height="40" src="~/images/123.jpg" />
                         </li>
-                    </ul>
+                        <li class="nav-item">
+                            <a class="text-body" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+                       
                     <partial name="_LoginPartial" />
-                </div>
+                    </ul>
+                </nav>
             </div>
-        </nav>
+        </div>
     </header>
-    <div class="container">
+    <div class="container bg-white">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - Test2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div align=center>
+            &copy; 2021 - Library Mangment System - <a asp-area="" asp-controller="Home" asp-action="Index">Info</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

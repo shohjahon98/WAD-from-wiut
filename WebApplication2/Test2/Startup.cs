@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +13,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Test2.Data;
+using Test2.Interface;
+using Test2.Models;
+using Test2.Repository;
+using Test2.Service;
+using test3.Services;
 
 namespace Test2
 {
@@ -36,6 +42,11 @@ namespace Test2
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
+            services.AddTransient<IRepository<Book>, RepositoryBook>();
+            services.AddTransient<BookService, BookService>();
+
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
             
         }
 

@@ -2,51 +2,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Test2.Data;
+using Test2.Interface;
 using Test2.Models;
+using Test2.Service;
 
 namespace Test2.Controllers
 {
+    [Authorize]
     public class BooksController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IRepository<Book> _Book;
+        private readonly BookService bookService;
 
-        public BooksController(ApplicationDbContext context)
+        public BooksController(IRepository<Book> book, BookService _bookService)
         {
-            _context = context;
+            _Book = book;
+            bookService = _bookService;
         }
 
         // GET: Books
         public async Task<IActionResult> Index()
         {
-            var result = await _context.Books.Include(b => b.Janr).ToListAsync();
-            return View(result);
+            return View(bookService.GetAllBooks());
         }
-
         // POST: Books
         [HttpPost]
         public async Task<IActionResult> Index(string searchText)
         {
-            var result = new List<Book>();
-            if (!string.IsNullOrEmpty(searchText))
-            {
-                result = await _context.Books
-                   .Include(b => b.Janr)
-                   .Where(x => x.Name.Contains(searchText))
-                   .ToListAsync();
-            }
-            else
-            {
-                result = await _context.Books
-                   .Include(b => b.Janr)
-                   .ToListAsync();
-
-            }
-            return View(result);
+            return View(bookService.GetSearch(searchText));
         }
+
 
         // GET: Books/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -55,10 +45,7 @@ namespace Test2.Controllers
             {
                 return NotFound();
             }
-
-            var book = await _context.Books
-                .Include(b => b.Janr)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var book = await bookService.GetById(id);
             if (book == null)
             {
                 return NotFound();
@@ -70,24 +57,20 @@ namespace Test2.Controllers
         // GET: Books/Create
         public IActionResult Create()
         {
-            ViewData["JanrId"] = new SelectList(_context.Janrs, "Id", "Name");
+            ViewData["GenreId"] = new SelectList(bookService.GetAllGenre(), "Id", "Name");
             return View();
         }
 
-        // POST: Books/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,AuthorBook,JanrId")] Book book)
+        public async Task<IActionResult> Create([Bind("Id,Name,AuthorBook,GenreId")] Book book)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(book);
-                await _context.SaveChangesAsync();
+                await bookService.AddBook(book);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["JanrId"] = new SelectList(_context.Janrs, "Id", "Name", book.JanrId);
+            ViewData["GenreId"] = new SelectList(bookService.GetAllGenre(), "Id", "Name", book.GenreId);
             return View(book);
         }
 
@@ -99,21 +82,18 @@ namespace Test2.Controllers
                 return NotFound();
             }
 
-            var book = await _context.Books.FindAsync(id);
+            var book = await bookService.GetById(id);
             if (book == null)
             {
                 return NotFound();
             }
-            ViewData["JanrId"] = new SelectList(_context.Janrs, "Id", "Name", book.JanrId);
+            ViewData["GenreId"] = new SelectList(bookService.GetAllGenre(), "Id", "Name", book.GenreId);
             return View(book);
         }
 
-        // POST: Books/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,AuthorBook,JanrId")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,AuthorBook,GenreId")] Book book)
         {
             if (id != book.Id)
             {
@@ -124,8 +104,7 @@ namespace Test2.Controllers
             {
                 try
                 {
-                    _context.Update(book);
-                    await _context.SaveChangesAsync();
+                    await bookService.UpdateBook(book);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -140,7 +119,7 @@ namespace Test2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["JanrId"] = new SelectList(_context.Janrs, "Id", "Name", book.JanrId);
+            ViewData["GenreId"] = new SelectList(bookService.GetAllGenre(), "Id", "Name", book.GenreId);
             return View(book);
         }
 
@@ -151,10 +130,7 @@ namespace Test2.Controllers
             {
                 return NotFound();
             }
-
-            var book = await _context.Books
-                .Include(b => b.Janr)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var book = await bookService.GetById(id);
             if (book == null)
             {
                 return NotFound();
@@ -163,20 +139,18 @@ namespace Test2.Controllers
             return View(book);
         }
 
-        // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var book = await _context.Books.FindAsync(id);
-            _context.Books.Remove(book);
-            await _context.SaveChangesAsync();
+            await bookService.DeleteBook(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool BookExists(int id)
         {
-            return _context.Books.Any(e => e.Id == id);
+            return bookService.Exists(id);
         }
     }
 }
+

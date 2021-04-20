@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Test2.Models;
 
 namespace Test2.Controllers
 {
+    [Authorize]
     public class StudentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -35,7 +37,7 @@ namespace Test2.Controllers
             {
                 result = await _context.Students
                    .Include(b => b.MyGroup)
-                   .Where(x => x.Fio.Contains(searchText))
+                   .Where(x => x.FirstName.Contains(searchText))
                    .ToListAsync();
             }
             else
@@ -78,7 +80,7 @@ namespace Test2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Fio,BirthDay,MyGroupId")] Student student)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,BirthDay,MyGroupId")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -112,7 +114,7 @@ namespace Test2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Fio,BirthDay,MyGroupId")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,BirthDay,MyGroupId")] Student student)
         {
             if (id != student.Id)
             {

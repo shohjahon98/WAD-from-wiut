@@ -16,7 +16,7 @@ namespace Test2.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -229,7 +229,7 @@ namespace Test2.Data.Migrations
                     b.Property<string>("AuthorBook")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JanrId")
+                    b.Property<int>("GenreId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -237,19 +237,19 @@ namespace Test2.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("JanrId");
+                    b.HasIndex("GenreId");
 
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("Test2.Models.Janr", b =>
+            modelBuilder.Entity("Test2.Models.Genre", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("JanrId")
+                    b.Property<int?>("GenreId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -257,9 +257,9 @@ namespace Test2.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("JanrId");
+                    b.HasIndex("GenreId");
 
-                    b.ToTable("Janrs");
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("Test2.Models.MyGroup", b =>
@@ -287,7 +287,7 @@ namespace Test2.Data.Migrations
                     b.Property<DateTime>("BirthDay")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Fio")
+                    b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MyGroupId")
@@ -353,20 +353,20 @@ namespace Test2.Data.Migrations
 
             modelBuilder.Entity("Test2.Models.Book", b =>
                 {
-                    b.HasOne("Test2.Models.Janr", "Janr")
+                    b.HasOne("Test2.Models.Genre", "Genre")
                         .WithMany()
-                        .HasForeignKey("JanrId")
+                        .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Janr");
+                    b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("Test2.Models.Janr", b =>
+            modelBuilder.Entity("Test2.Models.Genre", b =>
                 {
-                    b.HasOne("Test2.Models.Janr", null)
-                        .WithMany("Janrs")
-                        .HasForeignKey("JanrId");
+                    b.HasOne("Test2.Models.Genre", null)
+                        .WithMany("Genres")
+                        .HasForeignKey("GenreId");
                 });
 
             modelBuilder.Entity("Test2.Models.Student", b =>
@@ -380,9 +380,9 @@ namespace Test2.Data.Migrations
                     b.Navigation("MyGroup");
                 });
 
-            modelBuilder.Entity("Test2.Models.Janr", b =>
+            modelBuilder.Entity("Test2.Models.Genre", b =>
                 {
-                    b.Navigation("Janrs");
+                    b.Navigation("Genres");
                 });
 
             modelBuilder.Entity("Test2.Models.MyGroup", b =>

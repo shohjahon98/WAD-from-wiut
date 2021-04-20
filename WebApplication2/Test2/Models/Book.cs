@@ -14,7 +14,7 @@ namespace Test2.Models
         public string Name { get; set; }
         public string AuthorBook { get; set; }
 
-        public int JanrId { get; set; }
-        public Janr Janr { get; set; }
+        public int GenreId { get; set; }
+        public Genre Genre { get; set; }
     }
 }

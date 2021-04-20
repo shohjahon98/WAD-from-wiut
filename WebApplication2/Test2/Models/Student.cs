@@ -11,7 +11,8 @@ namespace Test2.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Fio { get; set; }
+        [Display(Name = "Fist Name")]
+        public string FirstName { get; set; }
         public DateTime BirthDay { get; set; }
         
         public int MyGroupId { get; set; }

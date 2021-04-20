@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "boosted@5.0.0-beta2",
+      "destination": "wwwroot/boosted/"
+    }
+  ]
+}

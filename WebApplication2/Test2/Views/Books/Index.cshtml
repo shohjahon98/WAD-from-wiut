@@ -4,12 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<br/>
 
 <p>
     <a class="btn btn-primary" asp-action="Create">Create New</a>
 </p>
-<form action="/Books/Index" method="post">
+<br />
+<form asp-action="Index" asp-controller="Books" method="post">
     <ul class="list-group list-group-horizontal list-unstyled">
         <li class="list-group-item">
             <input type="text" name="searchText" placeholder="Search..."/>
@@ -33,7 +34,7 @@
                 @Html.DisplayNameFor(model => model.AuthorBook)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Janr)
+                Genre
             </th>
             <th></th>
         </tr>
@@ -49,12 +50,12 @@
                     @Html.DisplayFor(modelItem => item.AuthorBook)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Janr.Name)
+                    @Html.DisplayFor(modelItem => item.Genre.Name)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }
